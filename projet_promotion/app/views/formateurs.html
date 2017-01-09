@@ -1,0 +1,65 @@
+<style>
+    .center {
+        text-align: center;
+    }
+    html{
+        overflow-y: scroll !important;
+    }
+</style>
+<div class="container" ng-controller="formatCtrl" style="margin: 0;padding: 0;width: 100%; height: 100%">
+    <div class="row hauteur" style="margin-top:50px">
+        <div class="col-lg-2 col-md-3 center" style="padding: 20px;margin-top: 40px">
+        </div>
+        <div class="col-lg-8 col-md-6 center" style="padding: 20px;">
+            <h1>Liste</h1>
+            <table class="table table-bordered" style="margin-left: 20px">
+                <tr>
+                    <th class="center">ID</th>
+                    <th class="center">Nom</th>
+                    <th class="center">Prénom</th>
+                    <th class="center">Spécialité</th>
+                </tr>
+                <tr ng-repeat="f in lesformateurs">
+                    <td class="center">{{f.id}}</td>
+                    <td class="center">{{f.nom}}</td>
+                    <td class="center">{{f.prenom}}</td>
+                    <td class="center">{{f.specialite}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-2 col-md-3 center" style="padding: 20px">
+        </div>
+    </div>
+</div>
+<div class="container" ng-controller="formatCtrl" style="margin: 0;padding: 0;width: 100%; height: 100%">
+    <div class="row hauteur" style="margin-top:50px">
+        <div class="col-lg-2 col-md-3 center" style="padding: 20px;margin-top: 40px">
+        </div>
+        <div class="col-lg-8 col-md-6 center" style="padding: 20px;">
+            <div id='calendar'></div>
+        </div>
+        <div class="col-lg-2 col-md-3 center" style="padding: 20px">
+        </div>
+    </div>
+</div>
+<script>
+
+    var mywindow = $(window);
+    var mypos = mywindow.scrollTop();
+    mywindow.scroll(function() {
+        if(mywindow.scrollTop() > mypos)
+        {
+            $('#navigation').fadeOut();
+        }
+        else
+        {
+            $('#navigation').fadeIn();
+        }
+        mypos = mywindow.scrollTop();
+    });
+
+    $('#calendar').fullCalendar({
+        weekends: false,
+        defaultView: "month"
+    })
+</script>

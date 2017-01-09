@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr" style="overflow:hidden;">
+<head>
+    <!-- Essential jQuery Plugins
+    ================================================== -->
+    <!-- Main jQuery -->
+    <script src="Theme/js/jquery-1.11.1.min.js"></script>
+    <!-- Twitter Bootstrap -->
+    <script src="Theme/js/bootstrap.min.js"></script>
+    <!-- Single Page Nav -->
+    <script src="Theme/js/jquery.singlePageNav.min.js"></script>
+    <!-- jquery.fancybox.pack -->
+    <script src="Theme/js/jquery.fancybox.pack.js"></script>
+    <!-- Google Map API -->
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <!-- Owl Carousel -->
+    <script src="Theme/js/owl.carousel.min.js"></script>
+    <!-- jquery easing -->
+    <script src="Theme/js/jquery.easing.min.js"></script>
+    <!-- Fullscreen slider -->
+    <script src="Theme/js/jquery.slitslider.js"></script>
+    <script src="Theme/js/jquery.ba-cond.min.js"></script>
+    <!-- onscroll animation -->
+    <script src="Theme/js/wow.min.js"></script>
+    <!-- Custom Functions -->
+    <script src="Theme/js/main.js"></script>
+
+
+    <!-- CSS
+		================================================== -->
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Fontawesome Icon font -->
+    <link rel="stylesheet" href="Theme/css/font-awesome.min.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="Theme/css/jquery.fancybox.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="Theme/css/bootstrap.min.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="Theme/css/owl.carousel.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="Theme/css/slit-slider.css">
+    <!-- bootstrap.min -->
+    <link rel="stylesheet" href="Theme/css/animate.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="Theme/css/main.css">
+
+    <!-- Modernizer Script for old Browsers -->
+    <script src="Theme/js/modernizr-2.6.2.min.js"></script>
+
+    <link rel='stylesheet' href='../node_modules/fullcalendar/dist/fullcalendar.css' />
+    <script src='../node_modules/moment/moment.js'></script>
+    <script src='../node_modules/fullcalendar/dist/fullcalendar.js'></script>
+
+
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="route-app" class="hauteur">
+<!-- preloader -->
+<div id="preloader">
+    <div class="loder-box">
+        <div class="battery"></div>
+    </div>
+</div>
+<!-- end preloader -->
+    <div ng-controller="mainCtrl">
+
+        <!--
+        Fixed Navigation
+        ==================================== -->
+        <header id="navigation" class="navbar-inverse navbar-fixed-top animated-header">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+                </div>
+
+                <!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <ul id="nav" class="nav navbar-nav">
+                        <li><a ng-click="go('/promotions')">Promotions</a></li>
+                        <li><a ng-click="go('/formateurs')">Formateur</a></li>
+                        <li><a href="#portfolio">Administration</a></li>
+                    </ul>
+                </nav>
+                <!-- /main nav -->
+
+            </div>
+        </header>
+        <!--
+        End Fixed Navigation
+        ==================================== -->
+    </div>
+<ng-view style="padding-top:50px"></ng-view>
+</body>
+</html>

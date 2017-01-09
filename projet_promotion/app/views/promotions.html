@@ -1,0 +1,91 @@
+<style>
+    .center {
+        text-align: center;
+    }
+</style>
+<div class="container" ng-controller="promoCtrl" style="margin: 0;padding: 0;width: 100%; height: 100%">
+    <div class="row hauteur" style="margin-top:50px">
+        <div class="col-lg-2 col-md-3 center" style="padding: 20px;margin-top: 40px">
+            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a ng-click="majpromo()">Promotions</a></li>
+                    <li><a  ng-click="majmodules()">Modules</a></li>
+                    <li><a ng-click="majformateurs()">Formateurs</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+        <div id="Modules" class="col-lg-8 col-md-6 center" style="padding: 20px;display: none">
+            <h1>Liste</h1>
+            <table class="table table-bordered" style="margin-left: 20px">
+                <tr>
+                    <th class="center">ID</th>
+                    <th class="center">Nom</th>
+                    <th class="center">Sujet</th>
+                    <th class="center">Date de fin</th>
+                </tr>
+                <tr ng-repeat="m in lesmodules">
+                    <td class="center">{{m.id}}</td>
+                    <td class="center">{{m.nom}}</td>
+                    <td class="center">{{m.sujet}}</td>
+                    <td class="center">{{m.date_fin | date: 'dd/MM/yyyy'}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="Formateurs" class="col-lg-8 col-md-6 center" style="padding: 20px;display: none">
+            <h1>Liste</h1>
+            <table class="table table-bordered" style="margin-left: 20px">
+                <tr>
+                    <th class="center">ID</th>
+                    <th class="center">Nom</th>
+                    <th class="center">Prénom</th>
+                    <th class="center">Spécialité</th>
+                </tr>
+                <tr ng-repeat="f in lesformateurs">
+                    <td class="center">{{f.id}}</td>
+                    <td class="center">{{f.nom}}</td>
+                    <td class="center">{{f.prenom}}</td>
+                    <td class="center">{{f.specialite}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="Promotions" class="col-lg-8 col-md-6 center" style="padding: 20px;display: none">
+            <h1>Liste</h1>
+            <table class="table table-bordered" style="margin-left: 20px">
+                <tr>
+                    <th class="center">ID</th>
+                    <th class="center">Nom</th>
+                    <th class="center">Nombre etudiants</th>
+                    <th class="center">niveau</th>
+                </tr>
+                <tr ng-repeat="f in lespromotions">
+                    <td class="center">{{f.id}}</td>
+                    <td class="center">{{f.nom}}</td>
+                    <td class="center">{{f.nombre_etu}}</td>
+                    <td class="center">{{f.niveau}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-2 col-md-3 center" style="padding: 20px">
+        </div>
+    </div>
+</div>
+
+<script>
+    $("a").bind("click", function () {
+        if($(this).text()=="Modules"){
+            $("#Modules").show();
+            $("#Formateurs").hide();
+            $("#Promotions").hide();
+        }
+        else if($(this).text()=="Formateurs"){
+            $("#Modules").hide();
+            $("#Formateurs").show();
+            $("#Promotions").hide();
+        }
+        else{
+            $("#Modules").hide();
+            $("#Formateurs").hide();
+            $("#Promotions").show();
+        }
+    })
+</script>
