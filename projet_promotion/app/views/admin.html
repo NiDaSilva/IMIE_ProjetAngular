@@ -1,0 +1,169 @@
+<style>
+    .center {
+        text-align: center;
+    }
+</style>
+<div class="container" ng-controller="adminCtrl" style="margin: 0;padding: 0;width: 100%; height: 100%">
+    <div class="row hauteur" style="margin-top:50px">
+        <div class="col-lg-2 col-md-3 center" style="padding: 20px;margin-top: 40px">
+            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a ng-click="getCursus()">Cursus</a></li>
+                    <li><a ng-click="getPromo()">Promotions</a></li>
+                    <li><a ng-click="getFormateurs()">Formateurs</a></li>
+                    <li><a ng-click="getModules()">Modules</a></li>
+                    <li><a ng-click="getPromo(); getModules()">Modules Additionnels</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+        <div id="Cursus" class="col-lg-8 col-md-6 center" style="padding: 20px;display: none">
+            <h1>Ajouter</h1>
+            <form>
+                <span>Nom</span>
+                <input type="text" ng-model="nom">
+                <button ng-click="ajoutCursus()">Ajouter</button>
+            </form>
+            <h1>Liste</h1>
+            <table class="table table-bordered" style="margin-left: 20px">
+                <tr>
+                    <th class="center">ID</th>
+                    <th class="center">Nom</th>
+                </tr>
+                <tr ng-repeat="c in lesCursus">
+                    <td class="center">{{c.id}}</td>
+                    <td class="center">{{c.nom}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="Promotions" class="col-lg-8 col-md-6 center" style="padding: 20px;display: none">
+            <h1>Ajouter</h1>
+            <h1>Liste</h1>
+            <table class="table table-bordered" style="margin-left: 20px">
+                <tr>
+                    <th class="center">ID</th>
+                    <th class="center">Nom</th>
+                    <th class="center">Nombre etudiants</th>
+                    <th class="center">niveau</th>
+                </tr>
+                <tr ng-repeat="p in lesPromotions">
+                    <td class="center">{{p.id}}</td>
+                    <td class="center">{{p.nom}}</td>
+                    <td class="center">{{p.nombre_etu}}</td>
+                    <td class="center">{{p.niveau}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="Formateurs" class="col-lg-8 col-md-6 center" style="padding: 20px;display: none">
+            <h1>Ajouter</h1>
+            <h1>Liste</h1>
+            <table class="table table-bordered" style="margin-left: 20px">
+                <tr>
+                    <th class="center">ID</th>
+                    <th class="center">Nom</th>
+                    <th class="center">Prénom</th>
+                    <th class="center">Spécialité</th>
+                </tr>
+                <tr ng-repeat="f in lesFormateurs">
+                    <td class="center">{{f.id}}</td>
+                    <td class="center">{{f.nom}}</td>
+                    <td class="center">{{f.prenom}}</td>
+                    <td class="center">{{f.specialite}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="Modules" class="col-lg-8 col-md-6 center" style="padding: 20px;display: none">
+            <h1>Ajouter</h1>
+            <h1>Liste</h1>
+            <table class="table table-bordered" style="margin-left: 20px">
+                <tr>
+                    <th class="center">ID</th>
+                    <th class="center">Nom</th>
+                    <th class="center">Sujet</th>
+                    <th class="center">Date de fin</th>
+                </tr>
+                <tr ng-repeat="m in lesModules">
+                    <td class="center">{{m.id}}</td>
+                    <td class="center">{{m.nom}}</td>
+                    <td class="center">{{m.sujet}}</td>
+                    <td class="center">{{m.date_fin | date: 'dd/MM/yyyy'}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="Modules_Additionnels" class="col-lg-8 col-md-6 center" style="padding: 20px;display: none">
+            <div class="col-lg-5 center">
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="center">ID</th>
+                        <th class="center">Nom</th>
+                        <th class="center">Sujet</th>
+                        <th class="center">Date de fin</th>
+                    </tr>
+                    <tr ng-repeat="m in lesModules">
+                        <td class="center">{{m.id}}</td>
+                        <td class="center">{{m.nom}}</td>
+                        <td class="center">{{m.sujet}}</td>
+                        <td class="center">{{m.date_fin | date: 'dd/MM/yyyy'}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-lg-5 center">
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="center">ID</th>
+                        <th class="center">Nom</th>
+                        <th class="center">Nombre etudiants</th>
+                        <th class="center">niveau</th>
+                    </tr>
+                    <tr ng-repeat="p in lesPromotions">
+                        <td class="center">{{p.id}}</td>
+                        <td class="center">{{p.nom}}</td>
+                        <td class="center">{{p.nombre_etu}}</td>
+                        <td class="center">{{p.niveau}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-3 center" style="padding: 20px">
+        </div>
+    </div>
+</div>
+
+<script>
+    $("a").bind("click", function () {
+        if($(this).text()=="Cursus"){
+            $("#Cursus").show();
+            $("#Promotions").hide();
+            $("#Formateurs").hide();
+            $("#Modules").hide();
+            $("#Modules_Additionnels").hide();
+        }
+        else if($(this).text()=="Promotions"){
+            $("#Cursus").hide();
+            $("#Promotions").show();
+            $("#Formateurs").hide();
+            $("#Modules").hide();
+            $("#Modules_Additionnels").hide();
+        }
+        else if($(this).text()=="Formateurs"){
+            $("#Cursus").hide();
+            $("#Promotions").hide();
+            $("#Formateurs").show();
+            $("#Modules").hide();
+            $("#Modules_Additionnels").hide();
+        }
+        else if($(this).text()=="Modules"){
+            $("#Cursus").hide();
+            $("#Promotions").hide();
+            $("#Formateurs").hide();
+            $("#Modules").show();
+            $("#Modules_Additionnels").hide();
+        }
+        else if($(this).text()=="Modules Additionnels"){
+            $("#Cursus").hide();
+            $("#Promotions").hide();
+            $("#Formateurs").hide();
+            $("#Modules").hide();
+            $("#Modules_Additionnels").show();
+        }
+    })
+</script>

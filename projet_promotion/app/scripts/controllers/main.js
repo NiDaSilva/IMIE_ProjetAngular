@@ -17,6 +17,10 @@ app.config(function ($routeProvider) {
             templateUrl: "views/formateurs.html",
             controller: "formatCtrl"
         })
+        .when("/admin", {
+            templateUrl: "views/admin.html",
+            controller: "adminCtrl"
+        })
 });
 
 app.controller("mainCtrl", function ($scope, $location) {
@@ -27,17 +31,6 @@ app.controller("mainCtrl", function ($scope, $location) {
 
 app.controller("defaultCtrl", function ($scope) {
     $scope.message = "Cliquer sur le bouton afin de voir nos produits";
-});
-
-app.controller("formatCtrl", function ($scope , $http) {
-    $http({
-        method: "GET",
-        url: "/formateurs"
-    }).then(function successCallback(response) {
-        $scope.lesformateurs = response.data;
-    }, function errorCallback() {
-        alert("Erreur dans la recupération des données");
-    });
 });
 
 app.controller("promoCtrl", function ($scope, $http) {
@@ -61,7 +54,6 @@ app.controller("promoCtrl", function ($scope, $http) {
             alert("Erreur dans la recupération des données");
         });
     };
-
     $scope.majformateurs = function () {
         $http({
             method: "GET",
@@ -72,6 +64,75 @@ app.controller("promoCtrl", function ($scope, $http) {
             alert("Erreur dans la recupération des données");
         });
     };
+});
 
+app.controller("formatCtrl", function ($scope , $http) {
+    $http({
+        method: "GET",
+        url: "/formateurs"
+    }).then(function successCallback(response) {
+        $scope.lesformateurs = response.data;
+    }, function errorCallback() {
+        alert("Erreur dans la recupération des données");
+    });
+});
 
+app.controller("adminCtrl", function ($scope , $http) {
+    $scope.getCursus = function () {
+        $http({
+            method: "GET",
+            url: "/cursus"
+        }).then(function successCallback(response) {
+            $scope.lesCursus = response.data;
+        }, function errorCallback() {
+            alert("Erreur dans la recupération des données");
+        });
+    };
+    $scope.ajoutCursus = function () {
+        $http.post('/ajoutCursus', {
+            nom: $scope.nom
+        }).then(function(response) {
+            alert("Ajout du cursus " + $scope.nom);
+        });
+    };
+    $scope.getPromo = function () {
+        $http({
+            method: "GET",
+            url: "/promotions"
+        }).then(function successCallback(response) {
+            $scope.lesPromotions = response.data;
+        }, function errorCallback() {
+            alert("Erreur dans la recupération des données");
+        });
+    };
+    $scope.getFormateurs = function () {
+        $http({
+            method: "GET",
+            url: "/formateurs"
+        }).then(function successCallback(response) {
+            $scope.lesFormateurs = response.data;
+        }, function errorCallback() {
+            alert("Erreur dans la recupération des données");
+        });
+    };
+    $scope.getModules = function () {
+        $http({
+            method: "GET",
+            url: "/modules"
+        }).then(function successCallback(response) {
+            $scope.lesModules = response.data;
+        }, function errorCallback() {
+            alert("Erreur dans la recupération des données");
+        });
+    };
+    $scope.getModulesAdd = function () {
+        $http({
+            method: "GET",
+            url: "/modulesAdd"
+        }).then(function successCallback(response) {
+            $scope.lesModulesAdd = response.data;
+        }, function errorCallback() {
+            alert("Erreur dans la recupération des données");
+        });
+    };
 });

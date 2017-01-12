@@ -26,9 +26,5 @@
         "dist/js/bootstrap.js"
       ]
     }
-  },
-  "description": "",
-  "main": "",
-  "license": "MIT",
-  "homepage": ""
+  }
 }
